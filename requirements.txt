@@ -1,4 +1,3 @@
-distutils
 docker
 easyprocess
 fabulous
@@ -13,6 +12,7 @@ Pillow
 pandas
 pynput
 scikit-image
+setuptools
 shapely
 sympy
 termcolor
