@@ -56,7 +56,7 @@ jobs:
         python3 -m pip install setuptools
         python3 -m pip install --upgrade build
         python3 -m build
-        python3 -m cd dist/
+        cd dist/
         pip install icutil_IGNchinmay-0.0.1.tar.gz
         cd ../test/
         python3 test_json.py       
