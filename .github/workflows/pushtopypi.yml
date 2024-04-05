@@ -51,6 +51,7 @@ jobs:
         python-version: '3.x'
     - name: testing package
       run: |
+        python3 -m pip install --upgrade build
         python3 -m build
         cd dist/
         pip install icutil_IGNchinmay-0.0.1.tar.gz
