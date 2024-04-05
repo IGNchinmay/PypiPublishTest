@@ -5,7 +5,6 @@ imgaug
 loguru
 lsb_release_ex
 matplotlib
-numpy==1.23.0
 opencv-python
 pandas
 Pillow
