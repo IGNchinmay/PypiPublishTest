@@ -14,35 +14,34 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  dependencies:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  # dependencies:
+  #   # The type of runner that the job will run on
+  #   runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-      - name: Add repository sub-modules
-        run: |
-          git submodule init
-          git submodule update
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install setuptools wheel twine
+  #   # Steps represent a sequence of tasks that will be executed as part of the job
+  #   steps:
+  #     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+  #     - uses: actions/checkout@v3
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: '3.x'
+  #     - name: Add repository sub-modules
+  #       run: |
+  #         git submodule init
+  #         git submodule update
+  #     # - name: Install dependencies
+  #     #   run: |
+  #     #     python -m pip install --upgrade pip
+  #     #     pip install setuptools wheel twine
           
-      # Runs a single command using the runners shell
-      - name: Install dependancies
-        run: |
-          python3 -m pip install --upgrade build
-          pip install setuptools wheel twine
+  #     # Runs a single command using the runners shell
+  #     - name: Install dependancies
+  #       run: |
+  #         python3 -m pip install --upgrade build
+  #         pip install setuptools wheel twine
 
   test:
-    needs: dependencies
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -54,8 +53,9 @@ jobs:
         # cache-dependency-path: '**/pyproject.toml'
     - name: testing package
       run: |
-        # python3 -m pip install setuptools
-        # python3 -m pip install --upgrade build
+        python -m pip install --upgrade pip
+        python3 -m pip install setuptools wheel twine
+        python3 -m pip install --upgrade build
         python3 -m build
         cd dist/
         python3 -m pip install icutil_IGNchinmay-0.0.4.tar.gz
