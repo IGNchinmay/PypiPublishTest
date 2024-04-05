@@ -41,44 +41,44 @@ jobs:
           python3 -m pip install --upgrade build
           python3 -m pip install twine
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - name: testing package
-      run: |
-        python3 -m pip install setuptools
-        python3 -m pip install --upgrade build
-        python3 -m build
-        cd dist/
-        pip install icutil_IGNchinmay-0.0.1.tar.gz
-        cd ../test/
-        python3 test_json.py       
-          
-
-  # deploy:
+  # test:
   #   runs-on: ubuntu-latest
-  #   environment: release
-  #   permissions:
-  #     id-token: write
-  #   # needs: [test]
   #   steps:
   #   - uses: actions/checkout@v2
   #   - name: Set up Python
   #     uses: actions/setup-python@v5
   #     with:
-  #       python-version: '3.11'
-  #       cache: pip
-  #       cache-dependency-path: '**/pyproject.toml'
-  #   - name: Install dependencies
+  #       python-version: '3.x'
+  #   - name: testing package
   #     run: |
-  #       pip install setuptools wheel build
-  #   - name: Build
-  #     run: |
-  #       python -m build
-  #   - name: Publish
-  #     uses: pypa/gh-action-pypi-publish@release/v1
+  #       python3 -m pip install setuptools
+  #       python3 -m pip install --upgrade build
+  #       python3 -m build
+  #       cd dist/
+  #       pip install icutil_IGNchinmay-0.0.1.tar.gz
+  #       cd ../test/
+  #       python3 test_json.py       
+          
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+    # needs: [test]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: pip
+        cache-dependency-path: '**/pyproject.toml'
+    - name: Install dependencies
+      run: |
+        pip install setuptools wheel build
+    - name: Build
+      run: |
+        python -m build
+    - name: Publish
+      uses: pypa/gh-action-pypi-publish@release/v1
